@@ -24,9 +24,6 @@ class CreateUsersTable extends Migration
             $table->string('alamat');
             $table->string('nama_pasangan');
             $table->boolean('is_pasangan_bekerja');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Daftar Hadir Pegawai</title>
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" crossorigin="anonymous">
 </head>
 
@@ -14,12 +14,18 @@
             <a class="navbar-brand" href="#">
                 <img src="{{ 'assets/img/bsn1.png' }}" alt="Logo" width="30" height="24"
                     class="d-inline-block align-text-top">
-                INPUT DATA PEGAWAI
+                DAFTAR HADIR
             </a>
         </div>
     </nav>
     <div class="container-fluid">
-        <form>
+        @if (session()->has('save'))
+            <div class="alert alert-primary" role="alert">
+                Data berhasil disimpan!
+            </div>
+        @endif
+        <form action="{{ route('user.save') }}" method="POST">
+            @csrf
             <div class="row mb-3">
                 <label for="name" class="col-sm-2 col-form-label">Nama</label>
                 <div class="col-sm-10 col-lg-4">
@@ -44,43 +50,48 @@
                     <input type="number" name="nip" class="form-control" id="nip">
                 </div>
             </div>
-            {{-- <fieldset class="row mb-3">
-                <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
-                <div class="col-sm-10">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1"
-                            value="option1" checked>
-                        <label class="form-check-label" for="gridRadios1">
-                            First radio
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2"
-                            value="option2">
-                        <label class="form-check-label" for="gridRadios2">
-                            Second radio
-                        </label>
-                    </div>
-                    <div class="form-check disabled">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3"
-                            value="option3" disabled>
-                        <label class="form-check-label" for="gridRadios3">
-                            Third disabled radio
-                        </label>
-                    </div>
+            <div class="row mb-3">
+                <label for="unit_kerja" class="col-sm-2 col-form-label">Unit Kerja</label>
+                <div class="col-sm-10 col-lg-4">
+                    <input type="text" name="unit_kerja" class="form-control" id="unit_kerja">
                 </div>
-            </fieldset> --}}
-            {{-- <div class="row mb-3">
-                <div class="col-sm-10 offset-sm-2">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                        <label class="form-check-label" for="gridCheck1">
-                            Example checkbox
-                        </label>
-                    </div>
+            </div>
+            <div class="row mb-3">
+                <label for="no_telepon" class="col-sm-2 col-form-label">No Telepon</label>
+                <div class="col-sm-10 col-lg-4">
+                    <input type="number" name="no_telepon" class="form-control" id="no_telepon">
                 </div>
-            </div> --}}
-            <button type="submit" class="btn btn-primary">Sign in</button>
+            </div>
+            <div class="row mb-3">
+                <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+                <div class="col-sm-10 col-lg-4">
+                    <input type="text" name="alamat" class="form-control" id="alamat">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="nama_pasangan" class="col-sm-2 col-form-label">Nama Pasangan</label>
+                <div class="col-sm-10 col-lg-4">
+                    <input type="text" name="nama_pasangan" class="form-control" id="nama_pasangan">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="nama_pasangan" class="col-sm-2 col-form-label">Status Pasangan</label>
+                <div class="col-sm-10 col-lg-2">
+                    <input class="form-check-input" type="radio" name="is_pasangan_bekerja" id="bekerja"
+                        value="1">
+                    <label class="form-check-label" for="bekerja">
+                        Bekerja
+                    </label>
+                </div>
+                <div class="col-sm-10 col-lg-2">
+                    <input class="form-check-input" type="radio" name="is_pasangan_bekerja" id="tidak_bekerja"
+                        value="0">
+                    <label class="form-check-label" for="tidak_bekerja2">
+                        Tidak Bekerja
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
     </div>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" crossorigin="anonymous"></script>

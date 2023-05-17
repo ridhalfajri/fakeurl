@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +19,5 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::get('/', function () {
     return view('daftar');
-});
+})->name('daftar.index');
+Route::post('/save', [UserController::class, 'save'])->name('user.save');
